@@ -39,9 +39,8 @@ public class RecyclerView3Adapter extends RecyclerView.Adapter<RecyclerView3Adap
         @Override
         public void onClick(View view) {
             int index = super.getAdapterPosition();
-            Memo3 memo = arrayList.get(index);
-            String s = String.format("index: %d,  title: %s", index, memo.getTitle());
-            Toast.makeText(view.getContext(), s, Toast.LENGTH_SHORT).show();
+            RecyclerView3Activity activity = (RecyclerView3Activity) textView1.getContext();
+            activity.onMemoClicked(index);
         }
 
         @Override

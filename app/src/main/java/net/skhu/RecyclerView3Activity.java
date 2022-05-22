@@ -55,7 +55,11 @@ public class RecyclerView3Activity extends AppCompatActivity {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             Intent intent = result.getData();
                             Memo3 memo = (Memo3)intent.getSerializableExtra("MEMO");
-                            arrayList.add(memo);
+                            Integer index = (Integer)intent.getSerializableExtra("index");
+                            if (index == null)
+                                arrayList.add(memo);
+                            else
+                                arrayList.set(index, memo);
                             recyclerView3Adapter.notifyDataSetChanged();
                         }
                     }
@@ -99,6 +103,14 @@ public class RecyclerView3Activity extends AppCompatActivity {
         builder.setNegativeButton(R.string.no, null);
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public void onMemoClicked(int index) {
+        Intent intent = new Intent(this, Memo3Activity.class);
+        Memo3 memo = arrayList.get(index);
+        intent.putExtra("MEMO", memo);
+        intent.putExtra("index", index);
+        activityResultLauncher.launch(intent);
     }
 }
 

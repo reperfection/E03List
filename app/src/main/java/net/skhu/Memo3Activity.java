@@ -18,6 +18,15 @@ public class Memo3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memo3);
 
+        EditText editText_title = findViewById(R.id.editText_title);
+        EditText editText_content = findViewById(R.id.editText_content);
+        Memo3 memo = (Memo3)getIntent().getSerializableExtra("MEMO");
+        Integer index = (Integer)getIntent().getSerializableExtra("index");
+        if (memo != null) {
+            editText_title.setText(memo.getTitle());
+            editText_content.setText(memo.getContent());
+        }
+
         Button button = findViewById(R.id.btnSave);
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
